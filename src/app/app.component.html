@@ -1,0 +1,58 @@
+<div class="header">
+    <a href="#">Kushal Test Filter using JSON Server</a>
+</div>
+
+<div class="middle-section">
+    <div class="left-bar">
+        <ul>
+            <li>
+                <a href="#" class="fas fa-users"></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-cont">
+        <div class="row title-section">
+            <div class="col-12">
+                <h2>
+                    <i class="fa fa-user" [ngClass]="getUserIconColorClass()" aria-hidden="true"></i>
+                    &nbsp;{{userDetail?.name}}
+                </h2>
+            </div>
+        </div>
+
+        <div class="dashboard-tab">
+            <div class="tab-item-custom"
+                [ngClass]="{'text-primary': getCount(type.id,'type') > 0,'active':type.isActive}"
+                *ngFor="let type of typeList">
+                <span
+                    (click)="filterRecord(type.id,'type',type)">{{type.friendlyName}}({{getCount(type.id,'type')}})</span>
+            </div>
+            <div class="tab-item-custom"
+                [ngClass]="{'text-primary': getCount(status.id,'status') > 0, 'active':status.isActive}"
+                *ngFor="let status of statusList"><span
+                    (click)="filterRecord(status.id,'status',status)">{{status.friendlyName}}({{getCount(status.id,'status')}})</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 task-dtls">
+                <ul>
+                    <li *ngFor="let ticket of filteredTickets;index as i"
+                        [ngClass]="{'in-progress': ticket.status === getStatusDetailByName('InProgress'),'not-started': ticket.status === getStatusDetailByName('NotStarted')}">
+                        <div class="desc-blk">
+                            <p>{{ticket.description}}</p>
+                            <i class="fas fa-info-circle" placement="bottom" ngbTooltip="{{ticket.description}}"></i>
+                        </div>
+                        <div class="overflow-hidden desc-dropdown" (change)="updateRecord(ticket,$event.target.value)">
+                            <select [(ngModel)]="ticket.status" class="form-control form-control-sm">
+                                <option *ngFor="let status of statusList" [value]="status.id">{{status.friendlyName}}
+                                </option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

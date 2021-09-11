@@ -1,0 +1,268 @@
+/* You can add global styles to this file, and also import other style files */
+
+.header {
+  width: 100%;
+  padding: 15px;
+  background: url(/assets/images/bg-texture.png) center;
+}
+
+.dashboard-tab {
+  display: flex;
+  align-items: center;
+
+  @media only screen and (max-width: 767px) {
+    overflow: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+  }
+
+  .tab-item-custom {
+    flex: 1;
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    span {
+      display: block;
+      width: 100%;
+      line-height: 40px;
+      padding: 0 10px;
+      font-size: 14px;
+      color: #000;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    &.active, 
+    &:hover {
+      span {
+        background: url(/assets/images/tab-bg.png) center;
+        color: #0084b5;
+        text-decoration: underline;
+      }
+    }
+
+    &.text-primary {
+      span {
+        color: #0084b5;
+      }
+    }
+  }
+}
+
+.task-dtls {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+      @media only screen and (max-width: 560px) {
+        padding: 15px 0;
+      }
+
+      .desc-blk {
+        width: calc(100% - 130px);
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-right: 10px;
+
+        @media only screen and (max-width: 560px) {
+          width: calc(100% - 105px);
+        }
+
+        i {
+          color: rgba(0, 0, 0, 0.3);
+          font-size: 14px;
+          display: none;
+
+          @media only screen and (max-width: 767px) {
+            display: block;
+            position: relative;
+            left: -7px;
+          }
+        }
+
+        p {
+          font-size: 16px;
+          line-height: 24px;
+          position: relative;
+          padding-left: 20px;
+          margin-bottom: 0;
+
+          @media only screen and (max-width: 767px) {
+            font-size: 14px;
+            line-height: 22px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+
+          &:before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #29ad4a;
+            position: absolute;
+            top: 10px;
+            left: 0;
+
+            @media only screen and (max-width: 767px) {
+              width: 6px;
+              height: 6px;
+            }
+          }
+        }
+      }
+
+      .desc-dropdown {
+        width: 130px;
+
+        @media only screen and (max-width: 767px) {
+          width: 105px;
+        }
+
+        select {
+          width: 100%;
+          height: 30px;
+          border-radius: 6px;
+          appearance: none;
+          -webkit-appearance: none;
+          font-size: 14px;
+          font-weight: 600;
+          padding: 0 10px 2px;
+          line-height: 28px;
+          background: url(/assets/images/drop-arrow.png) no-repeat right center;
+          background-color: #29ad4a;
+          border: none;
+          color: #fff;
+          cursor: pointer;
+
+          @media only screen and (min-width: 561px) and (max-width: 767px) {
+            font-size: 12px;
+          }
+        }
+      }
+
+      &.in-progress {
+        .desc-blk {
+          p {
+            &:before {
+              background-color: #007bff;
+            }
+          }
+        }
+
+        .desc-dropdown {
+          select {
+            background-color: #007bff;
+          }
+        }
+      }
+
+      &.not-started {
+        .desc-blk {
+          p {
+            &:before {
+              background-color: #e23546;
+            }
+          }
+        }
+
+        .desc-dropdown {
+          select {
+            background-color: #e23546;
+          }
+        }
+      }
+    }
+  }
+}
+
+.middle-section {
+  width: 100%;
+  display: block;
+  position: relative;
+  padding-left: 60px;
+
+  @media only screen and (max-width: 767px) {
+    padding-left: 0;
+  }
+
+  .left-bar {
+    position: fixed;
+    left: 0;
+    top: 54px;
+    width: 60px;
+    background: url(/assets/images/bg-texture.png) center;
+    height: calc(100% - 54px);
+
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: calc(100% - 2px);
+
+      li {
+        a {
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          font-size: 18px;
+          color: #0084b5;
+          background: #fff;
+        }
+      }
+    }
+  }
+
+  .main-cont {
+    width: 100%;
+    padding: 30px;
+
+    @media only screen and (max-width: 767px) {
+      padding: 15px;
+    }
+  }
+}
+
+.title-section {
+  padding: 0 0 15px;
+  margin: 0 0 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+
+    i {
+      color: #007bff !important;
+
+      &.text-success {
+        color: #29ad4a !important;
+      }
+
+      &.text-danger {
+        color: #e23546 !important;
+      }
+    }
+  }
+}
